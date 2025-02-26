@@ -362,6 +362,17 @@ hr{
   box-shadow:  0 0 1rem #e9d6a43e,
                0 0 2.5rem #efe0b84a;
 }
+
+#author h3{
+  margin: 0;
+  text-align: center;
+  color: rgb(247, 247, 162);
+  font-size: clamp(1.2rem, 1.5vw, 2rem);
+  line-height: 1.2;
+  text-shadow: 0 0 5px #212a24f2,
+              0 0 10px #161d1bfb;
+}
+
 #author p{
   
   margin: 0;
