@@ -66,10 +66,9 @@ body {
 
   .navbar {
     display: flex;
-    justify-content:space-between;
+    justify-content:space-evenly;
     align-items: center;
     padding: 0.5rem 1rem;
-    
   }
   
   .logo {
@@ -456,4 +455,11 @@ footer {
   body {
     background-image: url(img/homewebp.webp);/* Background image for medium screens */
   }
+.navbar {
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+  }
+
 }
