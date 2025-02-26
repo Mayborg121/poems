@@ -89,7 +89,7 @@ body {
   .nav-links {
     list-style: none;
     display: flex;
-    margin: 0 0 0 -0.8rem;
+    margin: 0 0 0 -1rem;
   }
   
   .nav-links li {
