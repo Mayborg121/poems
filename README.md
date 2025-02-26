@@ -1,4 +1,3 @@
-Based on your poetry website, I've crafted a `README.md` file for your GitHub repository. This README provides an overview of your project, setup instructions, and ways others can contribute.
 
 ```markdown
 # Poetry Haven
