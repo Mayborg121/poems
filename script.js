@@ -60,7 +60,11 @@ fetch(poemUrl)
             meaning.textContent = `${selectedItem.Meaning}`;
             download.innerHTML = `Download Poem`;
             document.getElementById('nextBtn').addEventListener('click', function() {
-              window.location.href = `?n=${n+1}`;
+              if (n == data.length){
+                window.location.href = `?n=1`;
+              } else{
+                window.location.href = `?n=${n+1}`;
+              }
             });
         } 
         else{
