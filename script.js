@@ -59,6 +59,9 @@ fetch(poemUrl)
             context.textContent = `${selectedItem.Context}`;
             meaning.textContent = `${selectedItem.Meaning}`;
             download.innerHTML = `Download Poem`;
+            document.getElementById('nextBtn').addEventListener('click', function() {
+              window.location.href = `?n=${n+1}`;
+            });
         } 
         else{
 
