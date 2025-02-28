@@ -133,7 +133,7 @@ fetch(poemUrl)
           firefly.classList.add("firefly");
           document.body.appendChild(firefly);
           
-          const x = rect.left + Math.random() * rect.width;
+          const x = rect.left + Math.random() * (rect.width - 20);
           const y = rect.top + Math.random() * rect.height;
           firefly.style.left = `${x}px`;
           firefly.style.top = `${y}px`;
