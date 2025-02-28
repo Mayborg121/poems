@@ -42,9 +42,10 @@ body {
     font-size: clamp(4rem, 10vw, 8rem);
     text-align: center;
     color: #ffffff;
-    text-shadow: 0 0 10px #ffffffa2,   /* White outer glow */
-               0 0 20px #f2f0b497, 
-               0 0 30px #f6f4c28e;
+    text-shadow: 8px 8px 10px #2f2e2ea2,5px 5px 10px #100f0fa2,
+                0 0 10px #ffffffa2,   /* White outer glow */
+                0 0 20px #f2f0b497, 
+                0 0 30px #f6f4c28e;
     transition: 0.5s ease-in-out;
   }
   #mainheading:hover{
