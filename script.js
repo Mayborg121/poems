@@ -40,7 +40,7 @@ fetch(poemUrl)
             author.style.display = "flex";
 
         }
-        const bg = Math.floor(Math.random() * 12) + 1;
+        const bg = Math.floor(Math.random() * 24) + 1;
         console.log("bg = ",bg);
         n = Number(n);
         console.log(n);
