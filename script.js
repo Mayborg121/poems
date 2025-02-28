@@ -117,3 +117,59 @@ fetch(poemUrl)
           console.error('Element with ID "capture" not found.');
         }
       });
+
+
+
+      let activeFireflies = 0;
+      const maxFireflies = 15;
+
+      function createFirefly() {
+          if (activeFireflies >= maxFireflies) return;
+          activeFireflies++;
+
+          const heading = document.getElementById("mainheading");
+          const rect = heading.getBoundingClientRect();
+          const firefly = document.createElement("div");
+          firefly.classList.add("firefly");
+          document.body.appendChild(firefly);
+          
+          const x = rect.left + Math.random() * rect.width;
+          const y = rect.top + Math.random() * rect.height;
+          firefly.style.left = `${x}px`;
+          firefly.style.top = `${y}px`;
+          
+          // Assign random properties for size, glow, movement, and speed
+          firefly.style.setProperty('--size', Math.random() * 0.5 + 0.24);
+          firefly.style.setProperty('--glow', Math.random() * 0.45 + 0.3);
+          firefly.style.setProperty('--twinkle-time', `${Math.random() * 3 + 2}s`);
+          firefly.style.setProperty('--twinkle-opacity', Math.random() * 0.1 + 0.2);
+          firefly.style.setProperty('--speed', `${Math.random() * 4 + 14}s`);
+          firefly.style.setProperty('--randomX1', Math.random());
+          firefly.style.setProperty('--randomY1', Math.random());
+          firefly.style.setProperty('--randomX2', Math.random());
+          firefly.style.setProperty('--randomY2', Math.random());
+          firefly.style.setProperty('--randomX3', Math.random());
+          firefly.style.setProperty('--randomY3', Math.random());
+          firefly.style.setProperty('--randomX4', Math.random());
+          firefly.style.setProperty('--randomY4', Math.random());
+          
+          firefly.style.animation = `moveRandom var(--speed) ease-in-out forwards, fadeInOut var(--speed) ease-in-out, twinkle var(--twinkle-time) infinite`;
+          
+          setTimeout(() => {
+              firefly.remove();
+              activeFireflies--;
+          }, parseFloat(firefly.style.getPropertyValue('--speed')) * 1000);
+      }
+      
+      function spawnFireflies() {
+          setInterval(() => {
+              if (activeFireflies < maxFireflies) {
+                  const count = Math.min(Math.floor(Math.random() * 4) + 4, maxFireflies - activeFireflies);
+                  for (let i = 0; i < count; i++) {
+                      setTimeout(createFirefly, Math.random() * 5000);
+                  }
+              }
+          }, 4000);
+      }
+      
+      spawnFireflies();
