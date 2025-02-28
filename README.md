@@ -1,5 +1,4 @@
 
-```markdown
 # Poetry Haven
 
 Welcome to **Poetry Haven**, a sanctuary of heartfelt verses and creative expressions. This repository houses the source code and content for [mayborg121.github.io/poems](https://mayborg121.github.io/poems), where you'll find a collection of original poems crafted to evoke emotions, inspire thoughts, and spark imagination.
