@@ -388,7 +388,16 @@ hr{
   box-shadow:  0 0 1rem #e9d6a43e,
                0 0 2.5rem #efe0b84a;
 }
-
+#author p{
+  margin: 0;
+  text-align: justify;
+  padding: clamp(1rem, 2vw, 1.5rem) clamp(2rem, 10vw, 20rem) 0 clamp(2rem, 10vw, 20rem) ;
+  color: rgb(249, 249, 212);
+  font-size: clamp(1rem, 1.2vw, 2rem);
+  line-height: 1.1;
+  text-shadow:  3px 3px 5px #1c221ef2,
+                3px 3px 10px #0f1412fb;
+}
 #author h3{
   margin: 0;
   text-align: center;
@@ -399,21 +408,10 @@ hr{
               0 0 10px #161d1bfb;
 }
 
-#author p{
-  
-  margin: 0;
-  text-align: justify;
-  padding: clamp(1rem, 2vw, 1.5rem) clamp(2rem, 6vw, 10rem) 0 clamp(2rem, 6vw, 10rem) ;
-  color: rgb(249, 249, 212);
-  font-size: clamp(1rem, 1.2vw, 2rem);
-  line-height: 1.1;
-  text-shadow:  3px 3px 5px #1c221ef2,
-                3px 3px 10px #0f1412fb;
-}
 #author h4{
-  margin: 1rem;
+  margin: 1rem 0;
   text-align: right;
-  padding: 1rem 0.5rem;
+  padding: clamp(1rem, 2vw, 1.5rem) clamp(2rem, 10vw, 20rem) 0 clamp(2rem, 10vw, 20rem) ;
   color: rgb(247, 247, 162);
   font-size: clamp(1rem, 1.2vw, 2rem);
   line-height: 1.2;
