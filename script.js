@@ -228,19 +228,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 selection.removeAllRanges();
                 selection.addRange(wordRange);
 
-                // Reset selection behavior after selecting
-                setTimeout(() => {
-                    document.querySelectorAll(".selectable").forEach(el => el.style.userSelect = "none");
-                }, 100);
-            }
-        }
-
-        // Allow normal selection for mouse users
-        element.addEventListener("mousedown", function () {
-            element.style.userSelect = "text";
-        });
-    });
-});
+                // Allow selection only for current 
 
 
 
