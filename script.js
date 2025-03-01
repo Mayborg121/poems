@@ -200,33 +200,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         element.addEventListener("touchstart", function (e) {
             if (e.touches.length === 1) {
-                touchTimer = setTimeout(() => {
-                    let selection = window.getSelection();
-                    let range = document.createRange();
-                    let textNode = document.caretRangeFromPoint(e.touches[0].clientX, e.touches[0].clientY);
-
-                    if (textNode && textNode.startContainer.nodeType === Node.TEXT_NODE) {
-                        let wordRange = document.createRange();
-                        let text = textNode.startContainer.textContent;
-                        let start = textNode.startOffset;
-                        let end = textNode.startOffset;
-
-                        // Expand selection to cover the whole word
-                        while (start > 0 && /\S/.test(text[start - 1])) start--;
-                        while (end < text.length && /\S/.test(text[end])) end++;
-
-                        wordRange.setStart(textNode.startContainer, start);
-                        wordRange.setEnd(textNode.startContainer, end);
-
-                        selection.removeAllRanges();
-                        selection.addRange(wordRange);
-
-                        // Prevent accidental future selections without long press
-                        setTimeout(() => {
-                            element.style.userSelect = "none";
-                        }, 100);
-                    }
-                }, 500); // Long press duration
+                touchTimer = setTimeout(() => selectableTextHandler.selectWord(e, element), 500);
             }
         });
 
@@ -241,7 +215,35 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+// Encapsulated functions inside an object to avoid interference
+const selectableTextHandler = {
+    selectWord: function (e, element) {
+        let selection = window.getSelection();
+        let textNode = document.caretRangeFromPoint(e.touches[0].clientX, e.touches[0].clientY);
 
+        if (textNode && textNode.startContainer.nodeType === Node.TEXT_NODE) {
+            let wordRange = document.createRange();
+            let text = textNode.startContainer.textContent;
+            let start = textNode.startOffset;
+            let end = textNode.startOffset;
 
+            // Expand selection to full word
+            while (start > 0 && /\S/.test(text[start - 1])) start--;
+            while (end < text.length && /\S/.test(text[end])) end++;
+
+            wordRange.setStart(textNode.startContainer, start);
+            wordRange.setEnd(textNode.startContainer, end);
+
+            // Keep existing selections, add the new one
+            let newSelection = selection.getRangeAt(0);
+            selection.removeAllRanges();
+            selection.addRange(newSelection);
+            selection.addRange(wordRange);
+
+            // Keep text selectable so selection remains
+            element.style.userSelect = "text";
+        }
+    }
+};
 
 
