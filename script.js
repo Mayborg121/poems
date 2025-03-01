@@ -134,13 +134,13 @@ fetch(poemUrl)
           document.body.appendChild(firefly);
           
           const x = rect.left + Math.random() * (rect.width - 20);
-          const y = rect.top + Math.random() * rect.height;
+          const y = rect.top + Math.random() * (rect.height+20);
           firefly.style.left = `${x}px`;
           firefly.style.top = `${y}px`;
           
           // Assign random properties for size, glow, movement, and speed
-          firefly.style.setProperty('--size', Math.random() * 0.5 + 0.24);
-          firefly.style.setProperty('--glow', Math.random() * 0.45 + 0.3);
+          firefly.style.setProperty('--size', Math.random() * 0.5 + 0.25);
+          firefly.style.setProperty('--glow', Math.random() * 0.45 + 0.28);
           firefly.style.setProperty('--twinkle-time', `${Math.random() * 3 + 2}s`);
           firefly.style.setProperty('--twinkle-opacity', Math.random() * 0.1 + 0.2);
           firefly.style.setProperty('--speed', `${Math.random() * 4 + 14}s`);
