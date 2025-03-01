@@ -33,6 +33,14 @@ body {
   }
 
 .selectable {
+    user-select: none; /* Prevent selection by default */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+/* Allow selection when the "select-mode" class is applied */
+.selectable.select-mode {
     user-select: text;
     -webkit-user-select: text;
     -moz-user-select: text;
