@@ -208,13 +208,20 @@ document.addEventListener("DOMContentLoaded", function () {
             clearTimeout(touchTimer);
         });
 
-        // Prevent normal tap from making text selectable
+        // Initially disable selection until long press
         element.style.userSelect = "none";
 
         // Allow normal selection for mouse users
         element.addEventListener("mousedown", function () {
             element.style.userSelect = "text";
         });
+    });
+
+    // Reset selection if user taps elsewhere
+    document.addEventListener("touchstart", function (e) {
+        if (!e.target.classList.contains("selectable")) {
+            selectableTextHandler.resetAllSelections();
+        }
     });
 });
 
@@ -247,16 +254,25 @@ const selectableTextHandler = {
             existingRanges.forEach(range => selection.addRange(range)); // Restore old selections
             selection.addRange(wordRange); // Add new selection
 
-            // **RESET EVERYTHING BACK to require long press again**
-            setTimeout(() => selectableTextHandler.resetSelectionRequirement(element), 100);
+            // **Reset selection requirement immediately**
+            selectableTextHandler.resetSelectionRequirement(element);
         }
     },
 
     resetSelectionRequirement: function (element) {
-        element.style.userSelect = "none"; // Prevents future taps from selecting immediately
-        window.getSelection().removeAllRanges(); // Clears browser's default quick-selection mode
+        setTimeout(() => {
+            element.style.userSelect = "none"; // Prevent instant re-selection
+        }, 100);
+    },
+
+    resetAllSelections: function () {
+        window.getSelection().removeAllRanges(); // Clear all selections
+        document.querySelectorAll(".selectable").forEach(element => {
+            element.style.userSelect = "none"; // Require long press again
+        });
     }
 };
+
 
 
 
