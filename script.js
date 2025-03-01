@@ -200,7 +200,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         element.addEventListener("touchstart", function (e) {
             if (e.touches.length === 1) {
-                touchTimer = setTimeout(() => selectableTextHandler.selectWord(e, element), 500);
+                touchTimer = setTimeout(() => selectableTextHandler.enableSelection(element), 500);
             }
         });
 
@@ -208,55 +208,31 @@ document.addEventListener("DOMContentLoaded", function () {
             clearTimeout(touchTimer);
         });
 
-        // Prevent normal tap from making text selectable
+        // Disable selection initially
         element.style.userSelect = "none";
+    });
 
-        // Allow normal selection for mouse users
-        element.addEventListener("mousedown", function () {
-            element.style.userSelect = "text";
-        });
+    // Reset selection if user taps elsewhere
+    document.addEventListener("touchstart", function (e) {
+        if (!e.target.classList.contains("selectable")) {
+            selectableTextHandler.disableSelection();
+        }
     });
 });
 
-// Encapsulated functions inside an object to avoid interference
+// Encapsulated functions for clean behavior
 const selectableTextHandler = {
-    selectWord: function (e, element) {
-        let selection = window.getSelection();
-        let textNode = document.caretRangeFromPoint(e.touches[0].clientX, e.touches[0].clientY);
-
-        if (textNode && textNode.startContainer.nodeType === Node.TEXT_NODE) {
-            let wordRange = document.createRange();
-            let text = textNode.startContainer.textContent;
-            let start = textNode.startOffset;
-            let end = textNode.startOffset;
-
-            // Expand selection to full word
-            while (start > 0 && /\S/.test(text[start - 1])) start--;
-            while (end < text.length && /\S/.test(text[end])) end++;
-
-            wordRange.setStart(textNode.startContainer, start);
-            wordRange.setEnd(textNode.startContainer, end);
-
-            // Preserve existing selections
-            let existingRanges = [];
-            for (let i = 0; i < selection.rangeCount; i++) {
-                existingRanges.push(selection.getRangeAt(i));
-            }
-
-            selection.removeAllRanges();
-            existingRanges.forEach(range => selection.addRange(range)); // Restore old selections
-            selection.addRange(wordRange); // Add new selection
-
-            // **RESET EVERYTHING BACK to require long press again**
-            setTimeout(() => selectableTextHandler.resetSelectionRequirement(element), 100);
-        }
+    enableSelection: function (element) {
+        element.style.userSelect = "text";
     },
 
-    resetSelectionRequirement: function (element) {
-        element.style.userSelect = "none"; // Prevents future taps from selecting immediately
-        window.getSelection().removeAllRanges(); // Clears browser's default quick-selection mode
+    disableSelection: function () {
+        document.querySelectorAll(".selectable").forEach(element => {
+            element.style.userSelect = "none"; // Require long press again
+        });
     }
 };
+
 
 
 
