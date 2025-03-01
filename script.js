@@ -186,3 +186,37 @@ fetch(poemUrl)
   }
       
 spawnFireflies();
+
+
+
+
+
+
+//text selection critera for touch screens and mouse
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".selectable").forEach(function (element) {
+        let touchTimer;
+
+        element.addEventListener("touchstart", function (e) {
+            if (e.touches.length === 1) {
+                touchTimer = setTimeout(() => {
+                    element.classList.add("select-mode"); // Enable selection
+                    let range = document.createRange();
+                    range.selectNodeContents(element);
+                    let selection = window.getSelection();
+                    selection.removeAllRanges();
+                    selection.addRange(range);
+                }, 500); // Long press duration
+            }
+        });
+
+        element.addEventListener("touchend", function () {
+            clearTimeout(touchTimer);
+        });
+
+        // Keep normal selection for mouse users
+        element.addEventListener("mousedown", function () {
+            element.classList.add("select-mode");
+        });
+    });
+});
