@@ -72,7 +72,10 @@ fetch(poemUrl)
 
             const read = document.getElementById("rp"); 
                 const rand = Math.floor(Math.random() * data.length) + 1;
+                const lastTime = data[data.length - 1].Time;
                 console.log(rand);
+
+                lastupdatetime.textContent = `Last updated : ${lastTime}`;
 
                 read.href = `?n=${rand}`;
             // Show list if 'n' is not present or invalid
