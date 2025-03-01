@@ -211,7 +211,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         let start = textNode.startOffset;
                         let end = textNode.startOffset;
 
-                        // Expand selection to capture the full word
+                        // Expand selection to full word
                         while (start > 0 && /\S/.test(text[start - 1])) start--;
                         while (end < text.length && /\S/.test(text[end])) end++;
 
@@ -221,7 +221,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         selection.removeAllRanges();
                         selection.addRange(wordRange);
 
-                        // Enable selection temporarily
+                        // Enable selection temporarily so it stays highlighted
                         element.style.userSelect = "text";
                     }
                 }, 500); // Long press duration
@@ -243,6 +243,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
 
 
 
