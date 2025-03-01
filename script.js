@@ -201,30 +201,40 @@ document.addEventListener("DOMContentLoaded", function () {
         element.addEventListener("touchstart", function (e) {
             if (e.touches.length === 1) {
                 touchTimer = setTimeout(() => {
+                    let selection = window.getSelection();
                     let range = document.createRange();
                     let textNode = document.caretRangeFromPoint(e.touches[0].clientX, e.touches[0].clientY);
 
-                    if (textNode) {
-                        range.setStart(textNode.startContainer, textNode.startOffset);
-                        range.setEnd(textNode.startContainer, textNode.startOffset + 1);
-                        let selection = window.getSelection();
+                    if (textNode && textNode.startContainer.nodeType === Node.TEXT_NODE) {
+                        let wordRange = document.createRange();
+                        let text = textNode.startContainer.textContent;
+                        let start = textNode.startOffset;
+                        let end = textNode.startOffset;
+
+                        // Expand selection to capture the full word
+                        while (start > 0 && /\S/.test(text[start - 1])) start--;
+                        while (end < text.length && /\S/.test(text[end])) end++;
+
+                        wordRange.setStart(textNode.startContainer, start);
+                        wordRange.setEnd(textNode.startContainer, end);
+
                         selection.removeAllRanges();
-                        selection.addRange(range);
+                        selection.addRange(wordRange);
 
                         // Enable selection temporarily
                         element.style.userSelect = "text";
                     }
-                }, 500); // Long press duration
+                }, 700); // Long press duration
             }
         });
 
         element.addEventListener("touchend", function () {
             clearTimeout(touchTimer);
 
-            // Reset to require long press again
+            // Reset selection behavior but keep current selection
             setTimeout(() => {
                 element.style.userSelect = "none";
-            }, 100); // Small delay to allow selection before disabling
+            }, 100);
         });
 
         // Allow normal selection for mouse users
@@ -233,5 +243,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
 
 
