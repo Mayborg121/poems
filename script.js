@@ -220,6 +220,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
                         selection.removeAllRanges();
                         selection.addRange(wordRange);
+
+                        // Prevent accidental future selections without long press
+                        setTimeout(() => {
+                            element.style.userSelect = "none";
+                        }, 100);
                     }
                 }, 500); // Long press duration
             }
@@ -229,12 +234,13 @@ document.addEventListener("DOMContentLoaded", function () {
             clearTimeout(touchTimer);
         });
 
-        // Ensure normal selection for mouse users
+        // Allow normal selection for mouse users
         element.addEventListener("mousedown", function () {
             element.style.userSelect = "text";
         });
     });
 });
+
 
 
 
