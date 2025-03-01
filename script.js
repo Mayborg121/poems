@@ -224,16 +224,16 @@ document.addEventListener("DOMContentLoaded", function () {
                         // Enable selection temporarily
                         element.style.userSelect = "text";
                     }
-                }, 700); // Long press duration
+                }, 500); // Long press duration
             }
         });
 
         element.addEventListener("touchend", function () {
             clearTimeout(touchTimer);
 
-            // Reset selection behavior but keep current selection
+            // Reset selection behavior but keep current selection forever
             setTimeout(() => {
-                element.style.userSelect = "none";
+                element.style.userSelect = "none"; // Prevent normal tap selection after long press
             }, 100);
         });
 
@@ -243,6 +243,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
 
 
 
