@@ -203,20 +203,28 @@ document.addEventListener("DOMContentLoaded", function () {
                 touchTimer = setTimeout(() => {
                     let range = document.createRange();
                     let textNode = document.caretRangeFromPoint(e.touches[0].clientX, e.touches[0].clientY);
-                    
+
                     if (textNode) {
                         range.setStart(textNode.startContainer, textNode.startOffset);
                         range.setEnd(textNode.startContainer, textNode.startOffset + 1);
                         let selection = window.getSelection();
                         selection.removeAllRanges();
                         selection.addRange(range);
+
+                        // Enable selection temporarily
+                        element.style.userSelect = "text";
                     }
-                }, 500); // Long press duration (500ms)
+                }, 500); // Long press duration
             }
         });
 
         element.addEventListener("touchend", function () {
             clearTimeout(touchTimer);
+
+            // Reset to require long press again
+            setTimeout(() => {
+                element.style.userSelect = "none";
+            }, 100); // Small delay to allow selection before disabling
         });
 
         // Allow normal selection for mouse users
@@ -225,4 +233,5 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
 
