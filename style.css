@@ -46,7 +46,10 @@ body {
     -moz-user-select: text;
     -ms-user-select: text;
 }
-
+::selection {
+    background-color: #6fff9332; /* Change highlight background color */
+    color: inherit; /* Keep text color unchanged */
+}
 
   #hero{
     margin: 0;
