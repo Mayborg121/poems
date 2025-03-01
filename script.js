@@ -231,7 +231,7 @@ document.addEventListener("DOMContentLoaded", function () {
         element.addEventListener("touchend", function () {
             clearTimeout(touchTimer);
 
-            // Reset selection behavior but keep current selection forever
+            // Reset selection behavior but keep current selection
             setTimeout(() => {
                 element.style.userSelect = "none"; // Prevent normal tap selection after long press
             }, 100);
