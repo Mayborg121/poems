@@ -193,6 +193,7 @@ spawnFireflies();
 
 
 //text selection critera for touch screens and mouse
+
 document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".selectable").forEach(function (element) {
         let touchTimer;
@@ -200,13 +201,17 @@ document.addEventListener("DOMContentLoaded", function () {
         element.addEventListener("touchstart", function (e) {
             if (e.touches.length === 1) {
                 touchTimer = setTimeout(() => {
-                    element.classList.add("select-mode"); // Enable selection
                     let range = document.createRange();
-                    range.selectNodeContents(element);
-                    let selection = window.getSelection();
-                    selection.removeAllRanges();
-                    selection.addRange(range);
-                }, 500); // Long press duration
+                    let textNode = document.caretRangeFromPoint(e.touches[0].clientX, e.touches[0].clientY);
+                    
+                    if (textNode) {
+                        range.setStart(textNode.startContainer, textNode.startOffset);
+                        range.setEnd(textNode.startContainer, textNode.startOffset + 1);
+                        let selection = window.getSelection();
+                        selection.removeAllRanges();
+                        selection.addRange(range);
+                    }
+                }, 500); // Long press duration (500ms)
             }
         });
 
@@ -214,9 +219,10 @@ document.addEventListener("DOMContentLoaded", function () {
             clearTimeout(touchTimer);
         });
 
-        // Keep normal selection for mouse users
+        // Allow normal selection for mouse users
         element.addEventListener("mousedown", function () {
-            element.classList.add("select-mode");
+            element.style.userSelect = "text";
         });
     });
 });
+
