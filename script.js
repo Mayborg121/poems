@@ -72,7 +72,7 @@ fetch(poemUrl)
 
             const read = document.getElementById("rp"); 
                 const rand = Math.floor(Math.random() * data.length) + 1;
-                const lastTime = data[data.length - 1].Time;
+                const lastTime = data[0].Time;
                 console.log(rand);
 
                 lastupdatetime.textContent = `Last updated : ${lastTime}`;
