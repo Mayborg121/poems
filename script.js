@@ -211,7 +211,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         let start = textNode.startOffset;
                         let end = textNode.startOffset;
 
-                        // Expand selection to full word
+                        // Expand selection to cover the whole word
                         while (start > 0 && /\S/.test(text[start - 1])) start--;
                         while (end < text.length && /\S/.test(text[end])) end++;
 
@@ -220,9 +220,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
                         selection.removeAllRanges();
                         selection.addRange(wordRange);
-
-                        // Enable selection temporarily so it stays highlighted
-                        element.style.userSelect = "text";
                     }
                 }, 500); // Long press duration
             }
@@ -230,19 +227,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
         element.addEventListener("touchend", function () {
             clearTimeout(touchTimer);
-
-            // Reset selection behavior but keep current selection
-            setTimeout(() => {
-                element.style.userSelect = "none"; // Prevent normal tap selection after long press
-            }, 100);
         });
 
-        // Allow normal selection for mouse users
+        // Ensure normal selection for mouse users
         element.addEventListener("mousedown", function () {
             element.style.userSelect = "text";
         });
     });
 });
+
 
 
 
