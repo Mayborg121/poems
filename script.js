@@ -139,7 +139,7 @@ fetch(poemUrl)
           firefly.style.top = `${y}px`;
           
           // Assign random properties for size, glow, movement, and speed
-          firefly.style.setProperty('--size', Math.random() * 0.5 + 0.25);
+          firefly.style.setProperty('--size', Math.random() * 0.7 + 0.25);
           firefly.style.setProperty('--glow', Math.random() * 0.45 + 0.28);
           firefly.style.setProperty('--twinkle-time', `${Math.random() * 3 + 2}s`);
           firefly.style.setProperty('--twinkle-opacity', Math.random() * 0.1 + 0.2);
