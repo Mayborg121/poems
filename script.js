@@ -208,6 +208,11 @@ document.addEventListener("DOMContentLoaded", function () {
             clearTimeout(touchTimer);
         });
 
+        // Reset selection behavior after touch to require long press again
+        element.addEventListener("touchcancel", function () {
+            selectableTextHandler.resetSelectionRequirement(element);
+        });
+
         // Allow normal selection for mouse users
         element.addEventListener("mousedown", function () {
             element.style.userSelect = "text";
@@ -234,16 +239,25 @@ const selectableTextHandler = {
             wordRange.setStart(textNode.startContainer, start);
             wordRange.setEnd(textNode.startContainer, end);
 
-            // Keep existing selections, add the new one
-            let newSelection = selection.getRangeAt(0);
-            selection.removeAllRanges();
-            selection.addRange(newSelection);
-            selection.addRange(wordRange);
+            // Preserve existing selections
+            let existingRanges = [];
+            for (let i = 0; i < selection.rangeCount; i++) {
+                existingRanges.push(selection.getRangeAt(i));
+            }
 
-            // Keep text selectable so selection remains
-            element.style.userSelect = "text";
+            selection.removeAllRanges();
+            existingRanges.forEach(range => selection.addRange(range)); // Restore old selections
+            selection.addRange(wordRange); // Add new selection
+
+            // Ensure long press is required for future selections
+            setTimeout(() => selectableTextHandler.resetSelectionRequirement(element), 100);
         }
+    },
+
+    resetSelectionRequirement: function (element) {
+        element.style.userSelect = "none";
     }
 };
+
 
 
