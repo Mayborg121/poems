@@ -164,15 +164,25 @@ fetch(poemUrl)
           }, parseFloat(firefly.style.getPropertyValue('--speed')) * 1000);
       }
       
-      function spawnFireflies() {
-          setInterval(() => {
-              if (activeFireflies < maxFireflies) {
-                  const count = Math.min(Math.floor(Math.random() * 4) + 4, maxFireflies - activeFireflies);
-                  for (let i = 0; i < count; i++) {
-                      setTimeout(createFirefly, Math.random() * 5000);
-                  }
-              }
-          }, 4000);
-      }
+    function spawnFireflies() {
+        setTimeout(() => {
+        if (activeFireflies < maxFireflies) {
+            const count = Math.min(Math.floor(Math.random() * 4) + 4, maxFireflies - activeFireflies);
+            for (let i = 0; i < count; i++) {
+              setTimeout(createFirefly, Math.random() * 5000);
+            }
+        }
+        
+        //Continue spawning every 4s after the first batch
+         setInterval(() => {
+            if (activeFireflies < maxFireflies) {
+                const count = Math.min(Math.floor(Math.random() * 4) + 4, maxFireflies - activeFireflies);
+                for (let i = 0; i < count; i++) {
+                    setTimeout(createFirefly, Math.random() * 5000); // Keep the random delay
+                }
+            }
+        }, 4000);
+    }, 1200); //First batch spawns after 1 second
+  }
       
-      spawnFireflies();
+spawnFireflies();
