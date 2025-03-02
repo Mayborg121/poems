@@ -236,5 +236,87 @@ const selectableTextHandler = {
 
 
 
+//audio settings
+
+// Check if an audio element already exists, if not, create one
+let audio = document.getElementById("audio");
+
+if (!audio) {
+    audio = document.createElement("audio");
+    audio.id = "audio";
+    audio.src = "Nostalgia-C418.aac"; // Change to your actual audio file
+    audio.loop = true;
+    document.body.appendChild(audio);
+}
+
+// Select UI elements
+const playPauseBtn = document.getElementById("playPauseBtn");
+const progressBar = document.getElementById("progressBar");
+
+// Load saved playback state & position
+document.addEventListener("DOMContentLoaded", () => {
+    const savedTime = localStorage.getItem("audioTime");
+    const savedState = localStorage.getItem("audioState");
+
+    if (savedTime) {
+        audio.currentTime = parseFloat(savedTime);
+    }
+
+    if (savedState === "playing") {
+        audio.play().then(() => {
+            playPauseBtn.textContent = "⏸"; // Update button UI
+        }).catch(() => {
+            console.warn("Autoplay was blocked, user interaction needed.");
+        });
+    }
+});
+
+// Play/Pause Function
+playPauseBtn.addEventListener("click", () => {
+    if (audio.paused) {
+        audio.play();
+        localStorage.setItem("audioState", "playing");
+        playPauseBtn.textContent = "⏸";
+    } else {
+        audio.pause();
+        localStorage.setItem("audioState", "paused");
+        playPauseBtn.textContent = "▶";
+    }
+});
+
+// Update Progress Bar
+audio.addEventListener("timeupdate", () => {
+    localStorage.setItem("audioTime", audio.currentTime);
+    localStorage.setItem("audioState", audio.paused ? "paused" : "playing");
+
+    const progress = (audio.currentTime / audio.duration) * 100;
+    progressBar.value = progress;
+    progressBar.style.background = `linear-gradient(to right, #689e9f1b ${progress}%, #00000000 ${progress}%)`;
+});
+
+// Seek audio when progress bar is clicked/dragged
+progressBar.addEventListener("input", () => {
+    const seekTime = (progressBar.value / 100) * audio.duration;
+    audio.currentTime = seekTime;
+    progressBar.style.background = `linear-gradient(to right, #689e9f1b ${progressBar.value}%, #00000000 ${progressBar.value}%)`;
+});
+
+// Prevent audio from pausing on navigation
+window.addEventListener("beforeunload", () => {
+    localStorage.setItem("audioTime", audio.currentTime);
+    localStorage.setItem("audioState", audio.paused ? "paused" : "playing");
+});
+
+// Ensure audio persists across navigation
+if (sessionStorage.getItem("audioInitialized") !== "true") {
+    sessionStorage.setItem("audioInitialized", "true");
+    document.body.appendChild(audio);
+}
+audio.addEventListener("ended", () => {
+  audio.currentTime = 0;
+  audio.play(); // Restart playback when finished
+});
+
+
 
 
