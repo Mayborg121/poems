@@ -264,7 +264,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (savedState === "playing") {
         audio.play().then(() => {
-            playPauseBtn.textContent = "⏸"; // Update button UI
+            playPauseBtn.textContent = "••"; // Update button UI
         }).catch(() => {
             console.warn("Autoplay was blocked, user interaction needed.");
         });
@@ -276,7 +276,7 @@ playPauseBtn.addEventListener("click", () => {
     if (audio.paused) {
         audio.play();
         localStorage.setItem("audioState", "playing");
-        playPauseBtn.textContent = "⏸";
+        playPauseBtn.textContent = "••";
     } else {
         audio.pause();
         localStorage.setItem("audioState", "paused");
