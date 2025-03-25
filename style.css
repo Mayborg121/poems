@@ -329,6 +329,7 @@ body {
 }
 
 #meaning-heading{
+  cursor: pointer;
   color: #8ddbd6;
   font-weight: bold;
   font-size: clamp(1.2rem,1.5vw,2rem);
