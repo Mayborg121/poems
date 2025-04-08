@@ -91,7 +91,7 @@ body {
   
   .logo {
     font-weight: bold;
-    font-size: clamp(1.5rem,2vw,2.2rem);
+    font-size: clamp(1.48rem,1.95vw,2.1rem);
     color: #fff;
     animation-delay: 0.1s;
     transition: 1s ease-in-out;
@@ -128,7 +128,7 @@ body {
   }
   
   .nav-links a {
-    font-size: clamp(1rem,1.3vw,1.8rem);
+    font-size: clamp(1rem,1.2vw,1.7rem);
     text-decoration: none;
     color: #fff;
   }
