@@ -83,6 +83,7 @@ body {
   }
 
   .navbar {
+    justify-content:space-between;
     display: flex;
     width: 95vw;
     align-items: center;
@@ -128,10 +129,9 @@ body {
   }
   
   .nav-links a {
-    
+    font-size: clamp(1rem,1.4vw,1.9rem);
     text-decoration: none;
     color: #fff;
-    font-size: clamp(1.1rem,1.5vw,2rem);
   }
   
   .nav-links a:hover {
