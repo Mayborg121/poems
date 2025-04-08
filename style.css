@@ -84,7 +84,7 @@ body {
 
   .navbar {
     display: flex;
-    width: 94vw;
+    width: 95vw;
     align-items: center;
     padding: 0.4rem 0.4rem;
   }
@@ -529,7 +529,7 @@ footer {
 .navbar {
     display: flex;
     justify-content:space-between;
-    width: 100%;
+    width: auto;
     align-items: center;
     padding: 0.5rem 1rem;
   }
