@@ -83,7 +83,6 @@ body {
   }
 
   .navbar {
-    justify-content:space-between;
     display: flex;
     width: 95vw;
     align-items: center;
