@@ -76,7 +76,7 @@ body {
     text-align: justify;
     padding: clamp(1rem, 1vw, 1.5rem) clamp(4rem, 10vw, 12rem) clamp(1rem, 2vw, 2rem) clamp(4rem, 10vw, 12rem);
     color: rgb(249, 249, 212);
-    font-size: clamp(1rem, 1.1vw, 1.8rem);
+    font-size: clamp(1rem, 1.05vw, 1.7rem);
     line-height: 1.2;
     text-shadow: 0 0 5px #28332cf2,
                 0 0 10px #1b2723fb;
