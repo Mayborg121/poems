@@ -102,6 +102,9 @@ body {
     animation-delay: 0.1s;
     transition: 0.5s ease-in-out;
   }
+ul {
+    padding-inline-start: 20px;
+}
   
   .nav-links {
     list-style: none;
