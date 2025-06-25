@@ -433,7 +433,7 @@ hr{
 #author p{
   margin: 0;
   text-align: justify;
-  padding: clamp(1rem, 2vw, 1.5rem) clamp(2rem, 10vw, 20rem) 0 clamp(2rem, 10vw, 20rem) ;
+  padding: clamp(0.7rem, 2vw, 1.2rem) clamp(0.7rem, 2vw, 1.2rem) 0 clamp(0.7rem, 2vw, 1.2rem) ;
   color: rgb(249, 249, 212);
   font-size: clamp(0.8rem, 1vw, 1.2rem);
   line-height: 1.1;
