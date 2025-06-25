@@ -419,7 +419,6 @@ hr{
   margin: 0 clamp(0.5rem, 10vw, 12rem);
   border-radius: 1rem;
   overflow: auto;
-  margin-bottom: 4rem;
 }
 
 #author img{
@@ -436,7 +435,7 @@ hr{
   text-align: justify;
   padding: clamp(1rem, 2vw, 1.5rem) clamp(2rem, 10vw, 20rem) 0 clamp(2rem, 10vw, 20rem) ;
   color: rgb(249, 249, 212);
-  font-size: clamp(1rem, 1.2vw, 2rem);
+  font-size: clamp(0.8rem, 1vw, 1.2rem);
   line-height: 1.1;
   text-shadow:  3px 3px 5px #1c221ef2,
                 3px 3px 10px #0f1412fb;
