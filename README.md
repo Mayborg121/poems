@@ -19,7 +19,7 @@ Each piece in this collection offers a glimpse into the author's soul, reflectin
 
 ## Features
 
-- **Random Poem Generator**: Discover a new poem with each visit.
+- **Random Poem**: Discover a new poem with each visit.
 - **Context and Meaning Sections**: Gain deeper insights into each poem.
 - **Download Option**: Save your favorite poems for offline reading.
 
@@ -100,7 +100,7 @@ For feedback or inquiries:
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License And Creative Commons. See the [LICENSE](LICENSE) file for details.
 
 ---
 
