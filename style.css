@@ -419,6 +419,7 @@ hr{
   margin: 0 clamp(0.5rem, 10vw, 12rem);
   border-radius: 1rem;
   overflow: auto;
+  margin-bottom: 4rem;
 }
 
 #author img{
