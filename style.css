@@ -312,7 +312,7 @@ ul {
   padding: 1rem;
   margin: 0;
   width: auto;
-  font-size: clamp(1.1rem,1.5vw,1.8rem);
+  font-size: clamp(1rem,1.4vw,1.6rem);
 }
 
 #timing{
