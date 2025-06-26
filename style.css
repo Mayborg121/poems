@@ -309,10 +309,10 @@ ul {
 
 #poem{
   font-family:'Typewriter';
-  padding: 1rem;
+  padding: 0.6rem;
   margin: 0;
   width: auto;
-  font-size: clamp(1rem,1.4vw,1.6rem);
+  font-size: clamp(0.95rem,1.4vw,1.6rem);
 }
 
 #timing{
