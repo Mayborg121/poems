@@ -102,6 +102,4 @@ For feedback or inquiries:
 
 This project is licensed under the MIT License And Creative Commons. See the [LICENSE](LICENSE) file for details.
 
----
-
 Made with ❤️ by MAYBORG | All rights reserved.
